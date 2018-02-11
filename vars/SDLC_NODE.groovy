@@ -1,16 +1,16 @@
-libs = [:]
-
 def call(nodeName, librariesPaths, body) {
+    def libs = [:]
+    
 	stage("Initialize libraries") {
 		node('master') {
 			for (path in librariesPaths) {
-				libs = loadAllFiles(createFilePath(path), libs)
+				libs = loadAllFiles(createFilePath(path), path, libs)
 			}
 		}
 	}
 
 	node(nodeName) {
-		body()
+		body(libs)
 	}
 }
 
@@ -18,13 +18,13 @@ def getLibraries() {
 	return libs
 }
 
-def loadAllFiles(rootPath, libs) {
+def loadAllFiles(rootPath, path, libs) {
     for (subPath in rootPath.list()) {
         fileName = subPath.getBaseName()
         if (!subPath.isDirectory()) {
            echo "loading library ${fileName}"
  	       
- 	       loadedLib = load "${libPath}/${fileName}.groovy"
+ 	       loadedLib = load "${path}/${fileName}.groovy"
           
            libs[fileName] = loadedLib
 	    }
