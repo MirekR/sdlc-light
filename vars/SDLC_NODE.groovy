@@ -4,7 +4,7 @@ def call(nodeName, librariesPaths, body) {
 	stage("Initialize libraries") {
 		node('master') {
 			for (path in librariesPaths) {
-				libs = loadAllFiles(createFilePath(path))
+				libs = loadAllFiles(createFilePath(path), libs)
 			}
 		}
 	}
