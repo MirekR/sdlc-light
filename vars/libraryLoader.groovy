@@ -18,7 +18,7 @@ def loadAllFiles(rootPath, path, libs) {
  	       // loadedLib = load "${path}/${fileName}.groovy"
           
            //   libs[fileName] = loadedLib
-           getClass().classLoader.rootLoader.addURL(new URL("file:///${path}/${fileName}.groovy"))
+           getClass().classLoader.addURL(new URL("file:///${path}/${fileName}.groovy"))
 
 	    }
     }
