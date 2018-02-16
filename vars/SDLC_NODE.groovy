@@ -1,5 +1,5 @@
 def call(nodeName, libPath, body) {
-	libs = libraryLoader.loadLibraries([libPath])
+	libs = libraryLoader.loadLibraries(libPath)
 
 	node(nodeName) {
 		body(libs)
