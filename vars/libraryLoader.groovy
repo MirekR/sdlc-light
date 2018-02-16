@@ -14,9 +14,12 @@ def loadAllFiles(rootPath, path, libs) {
         if (!subPath.isDirectory()) {
            echo "loading library ${fileName}"
  	       
- 	       loadedLib = load "${path}/${fileName}.groovy"
+
+ 	       // loadedLib = load "${path}/${fileName}.groovy"
           
-           libs[fileName] = loadedLib
+           //   libs[fileName] = loadedLib
+           this.class.classLoader.rootLoader.addURL(new URL("file:///${path}/${fileName}.groovy"))
+
 	    }
     }
 
