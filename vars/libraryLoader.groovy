@@ -15,10 +15,10 @@ def loadAllFiles(rootPath, path, libs) {
            echo "loading library ${fileName}"
  	       
 
- 	       // loadedLib = load "${path}/${fileName}.groovy"
+ 	       loadedLib = load "${path}/${fileName}.groovy"
           
-           //   libs[fileName] = loadedLib
-           getClass().classLoader.addURL(new URL("file:///${path}/${fileName}.groovy"))
+            libs[fileName] = loadedLib
+           // getClass().classLoader.addURL(new URL("file:///${path}/${fileName}.groovy"))
 
 	    }
     }
